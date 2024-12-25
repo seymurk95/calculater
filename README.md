@@ -24,7 +24,7 @@ The project consists of the following files:
 Clone the repository or copy the files.
 Create a CMakeLists.txt file for easier compilation (the example is added in this repository ( CMakeLists.txt file))
 
-## Example Output
+## Example 
 
 Enter expression:4+-8*-1^3
 
