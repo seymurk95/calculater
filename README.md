@@ -16,7 +16,7 @@ The project consists of the following files:
 - `main.cpp`: Contains the user interface logic (input/output).
 - `calculator.hpp`: Header file defining the calculator's functions.
 - `calculator.cpp`: Implementation of the calculator's core logic.
-- `test.cpp`: Unit tests for the calculator logic using `doctest`(https://github.com/doctest/doctest).
+  - `test.cpp`: Unit tests for the calculator logic using 'doctest'.(https://github.com/doctest/doctest)  
 - `CMakeLists.txt`: Build configuration for CMake.
 
 ## Steps to compile:
