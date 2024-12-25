@@ -27,10 +27,8 @@ Create a CMakeLists.txt file for easier compilation (the example is added in thi
 ## Example Output
 
 Enter expression:4+-8*-1^3
-
 Result: 12
 
 Enter expression:4/0
-
 Error: Division by zero
 
