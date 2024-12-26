@@ -3,8 +3,29 @@
 #include "doctest.h"
 #include <string>
 #include <vector>
+#include <limits>
+
 TEST_SUITE("calc") {
 
+    TEST_CASE("Overflow") {
+        SUBCASE("Value within double limits") {
+            CHECK_NOTHROW(checkOverflow(0.0));
+            CHECK_NOTHROW(checkOverflow(1.0));
+            CHECK_NOTHROW(checkOverflow(-1.0));
+            CHECK_NOTHROW(checkOverflow(std::numeric_limits<double>::max()));
+            CHECK_NOTHROW(checkOverflow(-std::numeric_limits<double>::max()));
+        }
+
+        SUBCASE("Value exceeding double limits") {
+            CHECK_THROWS_AS(checkOverflow(std::numeric_limits<double>::infinity()), std::overflow_error);
+            CHECK_THROWS_AS(checkOverflow(-std::numeric_limits<double>::infinity()), std::overflow_error);
+        }
+
+        SUBCASE("Special values") {
+            CHECK_NOTHROW(checkOverflow(std::numeric_limits<double>::min())); // Smallest positive normalized double
+            CHECK_NOTHROW(checkOverflow(-std::numeric_limits<double>::min()));
+        }
+    }
 
     TEST_CASE("precedence") {
        CHECK(precedence('+') == 1);
