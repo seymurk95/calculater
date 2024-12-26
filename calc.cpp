@@ -3,6 +3,13 @@
 #include <cmath>
 #include <string>
 #include <cctype>
+#include <limits>
+
+void checkOverflow(double value) {
+    if (std::isinf(value)) {
+        throw std::overflow_error("Value is too large or too small to be represented as a double");
+    }
+}
 
 int precedence(char op) {
     if (op == '+' || op == '-') return 1;
@@ -12,6 +19,9 @@ int precedence(char op) {
 }
 
 double applyOperation(double a, double b, char op) {
+    checkOverflow(a);
+    checkOverflow(b);
+    double result;
     switch (op) {
         case '+': return a + b;
         case '-': return a - b;
@@ -22,6 +32,8 @@ double applyOperation(double a, double b, char op) {
         case '^': return std::pow(a, b);
         default: throw std::invalid_argument("Unknown operator");
     }
+    checkOverflow(result);
+    return result;
 }
 
 void parseExpression(const std::string& expression, std::vector<double>& numbers, std::vector<char>& operators) {
@@ -32,6 +44,7 @@ void parseExpression(const std::string& expression, std::vector<double>& numbers
     if (!(iss >> number)) {
         throw std::invalid_argument("Incorrect input: expected number");
     }
+    checkOverflow(number);
     numbers.push_back(number);
 
     while (iss >> op) {
@@ -43,6 +56,7 @@ void parseExpression(const std::string& expression, std::vector<double>& numbers
         if (!(iss >> number)) {
             throw std::invalid_argument("Incorrect input: expected operator after the number");
         }
+        checkOverflow(number);
         numbers.push_back(number);
     }
 }
@@ -78,5 +92,7 @@ double evaluate(const std::vector<double>& numbers, const std::vector<char>& ope
         }
     }
 
+
+    checkOverflow(nums[0]);
     return nums[0];
 }
