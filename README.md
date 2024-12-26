@@ -1,4 +1,4 @@
- Calculator
+## Calculator
 
 The program realizes simple calculator that supports basic arithmetic operations, including addition, subtraction, multiplication, division, and exponentiation. The program is split into a main executable for user interaction and a library for the calculator's core logic.
 
